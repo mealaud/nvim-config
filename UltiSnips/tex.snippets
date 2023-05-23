@@ -1,0 +1,341 @@
+global !p
+def env(name):
+  [x,y] = vim.eval('vimtex#env#is_inside("' + str(name) + '")')
+  return x != '0' and y != '0'
+def text():
+  return vim.eval('vimtex#syntax#in_mathzone()') != '1' and not env('minted') and not comment()
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+endglobal
+
+#
+# Math modes
+#
+context "text()"
+snippet dm "display math" wA 
+
+\[
+	$1
+\]
+$0
+endsnippet
+
+#
+# Math things
+#
+
+context "math()"
+# snippet "lim" "limit" wrA
+snippet "(?<!\\)lim" "summation" wrA
+\\lim_{${1:h \to 0}}$0
+endsnippet
+
+context "math()"
+snippet "^li" "limit from below" wrA
+\\lim_{$1 \uparrow $2}$0
+endsnippet
+
+context "math()"
+snippet "_li" "limit from below" wrA
+\\lim_{$1 \downarrow $2}$0
+endsnippet
+
+context "math()"
+snippet "(?<!\\)sum" "summation" wrA
+\sum_{${1:i}=${2:0}}^{${3:\infty}}$0
+endsnippet
+
+context "math()"
+snippet "(?<![\\oi])((o|i|ii)?int)" "integrals" wrA
+\\`!p snip.rv = match.group(1)`_{${1:-\infty}}^{${2:\infty}}${3:f(x)} \,\mathrm d${4:x}$0
+endsnippet
+
+context "math()"
+snippet ~~ "tilde" iA
+\\widesim{$1}$0
+endsnippet
+
+context "math()"
+snippet -- "overline" iA
+\overline{$1}$0
+endsnippet
+
+context "math()"
+snippet __ "subscript" iA
+_{$1}$0
+endsnippet
+
+context "math()"
+snippet ^^ "superscript" iA
+^{$1}$0
+endsnippet
+
+context "math()"
+snippet fr "fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet :a "alpha" iA
+\\alpha
+endsnippet
+
+context "math()"
+snippet :b "beta" iA
+\\beta
+endsnippet
+
+context "math()"
+snippet :g "gamma" iA
+\\gamma
+endsnippet
+
+context "math()"
+snippet :G "Gamma" iA
+\\Gamma
+endsnippet
+
+context "math()"
+snippet :w "omega" iA
+\\omega
+endsnippet
+
+context "math()"
+snippet :W "Omega" iA
+\\Omega
+endsnippet
+
+context "math()"
+snippet :k "kappa" iA
+\\kappa
+endsnippet
+
+context "math()"
+snippet :p "phi" iA
+\\phi
+endsnippet
+
+context "math()"
+snippet :vp "varphi" iA
+\\varphi
+endsnippet
+
+context "math()"
+snippet :P "Phi" iA
+\\Phi
+endsnippet
+
+context "math()" 
+snippet :t "theta" iA
+\\theta
+endsnippet 
+
+context "math()"
+snippet :s "sigma" iA
+\\sigma
+endsnippet
+
+context "math()"
+snippet :S "Sigma" iA
+\\Sigma
+endsnippet
+
+context "math()"
+snippet :z "zeta" iA
+\\zeta
+endsnippet
+
+context "math()"
+snippet :l "lambda" iA
+\\lambda
+endsnippet
+
+context "math()"
+snippet :L "Lambda" iA
+\\Lambda
+endsnippet
+
+context "math()"
+snippet :: "\colon" iA
+\\colon
+endsnippet
+
+context "math()"
+snippet .. "\ldots" iA
+\\ldots
+endsnippet
+
+context "math()"
+snippet idx "inline derivative" iA
+\\mathrm{d} {${1:f}}/\\mathrm{d}${2:x}$0
+endsnippet
+
+context "math()"
+snippet ddx "derivative" iA
+\\frac{\\mathrm{d}{${1:f}}}{\\mathrm{d}${2:x}}$0
+endsnippet
+
+context "math()"
+snippet ipx "inline partial derivative" iA
+\partial ${1:f}/\partial ${2:x}
+endsnippet
+
+context "math()"
+snippet ppx "partial derivative" iA
+\\frac{\partial ${1:f}}{\partial ${2:x}}
+endsnippet
+
+context "math()"
+snippet mbf "math boldface" iA
+\\bm{$1}$0
+endsnippet
+
+context "math()"
+snippet mbb "math blackboard bold" iA
+\\mathbb{$1}$0
+endsnippet
+
+context "math()"
+snippet :. "cdot" iA
+\\cdot
+endsnippet
+
+context "math()"
+snippet bp "big parentheses" iA
+\\bigpar{$1}$0
+endsnippet
+
+context "math()"
+snippet bb "big brackets" iA
+\\bigbra{$1}$0
+endsnippet
+
+context "math()"
+snippet ba "big absolute value" iA
+\\abs{$1}$0
+endsnippet
+
+context "math()"
+snippet := "coloneqq" iA
+\\coloneqq 
+endsnippet
+
+context "math()"
+snippet sbs "subseteq" iA
+\\subseteq
+endsnippet
+
+context "math()"
+snippet sps "supseteq" iA
+\\supseteq
+endsnippet
+#
+# Text things
+#
+context "text()"
+snippet enum "enumerate environment" bA
+\\begin{enumerate}[${1:(a)}]
+	\\item $0
+\\end{enumerate}
+endsnippet
+
+context "text()"
+snippet tdf "definition text" wA
+\\tdf{$1}$0
+endsnippet
+
+context "text()"
+snippet :fo "forward implication" iA
+($\\Rightarrow$)
+endsnippet
+
+context "text()"
+snippet :re "reverse implication" iA
+($\\Leftarrow$)
+endsnippet
+
+context "text()"
+snippet :so "reverse subset inclusion" iA
+($\\subseteq$)
+endsnippet
+
+context "text()"
+snippet :se "reverse subset inclusion" iA
+($\\supseteq$)
+endsnippet
+#
+# Environments
+#
+context "text()"
+snippet defn "definition environment" bA
+\\begin{defn}
+	$1
+\\end{defn}
+$0
+endsnippet
+
+context "text()"
+snippet thm "theorem environment" bA
+\\begin{result}{theorem}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet prop "proposition environment" bA
+\\begin{result}{proposition}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet coro "corollary environment" bA
+\\begin{result}{corollary}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet lem "lemma environment" bA
+\\begin{result}{lemma}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet rem "remark environment" bA
+\\begin{rem}
+	$1
+\\end{rem}
+$0
+endsnippet
+
+context "text()"
+snippet pf "proof environment" bA
+\\begin{pf}
+	$0
+\\end{pf}
+endsnippet
+
+context "text()"
+snippet pnc "problem environment" bA
+\\begin{probnc}{$1}
+	$2
+\\end{probnc}
+$0
+endsnippet
+
+context "text()"
+snippet ali "align environment" wA
+
+\\begin{align}
+	$1
+\\end{align}
+$0
+endsnippet
