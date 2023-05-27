@@ -1,13 +1,19 @@
+global !v
+function! InsideMathZone()
+	for id in synstack(line("."), col("."))
+		if synIDattr(id, "name") == "VimwikiEqIn"
+			return 1
+		endif
+	endfor
+	return 0
+endfunction
+endglobal
+
 global !p
-def env(name):
-  [x,y] = vim.eval('vimtex#env#is_inside("' + str(name) + '")')
-  return x != '0' and y != '0'
 def text():
-  return vim.eval('vimtex#syntax#in_mathzone()') != '1' and not env('minted') and not comment()
+	return vim.eval('InsideMathZone()') != '1'
 def math():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-def comment(): 
-	return vim.eval('vimtex#syntax#in_comment()') == '1'
+	return vim.eval('InsideMathZone()') == '1'
 endglobal
 
 #
@@ -62,10 +68,99 @@ snippet -- "overline" iA
 \overline{$1}$0
 endsnippet
 
+context "math()"
+snippet __ "subscript" iA
+_{$1}$0
+endsnippet
+
+context "math()"
+snippet ^^ "superscript" iA
+^{$1}$0
+endsnippet
 
 context "math()"
 snippet fr "fraction" iA
 \\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet :a "alpha" iA
+\\alpha
+endsnippet
+
+context "math()"
+snippet :b "beta" iA
+\\beta
+endsnippet
+
+context "math()"
+snippet :g "gamma" iA
+\\gamma
+endsnippet
+
+context "math()"
+snippet :G "Gamma" iA
+\\Gamma
+endsnippet
+
+context "math()"
+snippet :w "omega" iA
+\\omega
+endsnippet
+
+context "math()"
+snippet :W "Omega" iA
+\\Omega
+endsnippet
+
+context "math()"
+snippet :k "kappa" iA
+\\kappa
+endsnippet
+
+context "math()"
+snippet :p "phi" iA
+\\phi
+endsnippet
+
+context "math()"
+snippet :vp "varphi" iA
+\\varphi
+endsnippet
+
+context "math()"
+snippet :P "Phi" iA
+\\Phi
+endsnippet
+
+context "math()" 
+snippet :t "theta" iA
+\\theta
+endsnippet 
+
+context "math()"
+snippet :s "sigma" iA
+\\sigma
+endsnippet
+
+context "math()"
+snippet :S "Sigma" iA
+\\Sigma
+endsnippet
+
+context "math()"
+snippet :z "zeta" iA
+\\zeta
+endsnippet
+
+context "math()"
+snippet :l "lambda" iA
+\\lambda
+endsnippet
+
+context "math()"
+snippet :L "Lambda" iA
+\\Lambda
 endsnippet
 
 context "math()"
@@ -175,4 +270,78 @@ endsnippet
 context "text()"
 snippet :se "reverse subset inclusion" iA
 ($\\supseteq$)
+endsnippet
+#
+# Environments
+#
+context "text()"
+snippet defn "definition environment" bA
+\\begin{defn}
+	$1
+\\end{defn}
+$0
+endsnippet
+
+context "text()"
+snippet thm "theorem environment" bA
+\\begin{result}{theorem}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet prop "proposition environment" bA
+\\begin{result}{proposition}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet coro "corollary environment" bA
+\\begin{result}{corollary}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet lem "lemma environment" bA
+\\begin{result}{lemma}{\\label{$1}}
+	$2
+\\end{result}
+$0
+endsnippet
+
+context "text()"
+snippet rem "remark environment" bA
+\\begin{rem}
+	$1
+\\end{rem}
+$0
+endsnippet
+
+context "text()"
+snippet pf "proof environment" bA
+\\begin{pf}
+	$0
+\\end{pf}
+endsnippet
+
+context "text()"
+snippet pnc "problem environment" bA
+\\begin{probnc}{$1}
+	$2
+\\end{probnc}
+$0
+endsnippet
+
+context "text()"
+snippet ali "align environment" wA
+
+\\begin{align}
+	$1
+\\end{align}
+$0
 endsnippet
