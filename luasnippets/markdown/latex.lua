@@ -57,15 +57,19 @@ DELIMITERS["s"] = "set"
 ls.add_snippets("markdown", {
   -- display math
   s("dm", {
-      t({ "\\\\[", "\t" }),
+      -- t({ "\\\\[", "\t" }),
+      t({"$$", "\t"}),
       i(0),
-      t({ "", "\\\\]" }),
+      -- t({ "", "\\\\]" }),
+      t({"", "$$"}),
   }, { condition = in_text }),
   s("mm", {
-      t("\\\\("),
+      -- t("\\\\("),
+      t("$"),
       t(" "),
       i(1),
-      t("\\\\)"),
+      -- t("\\\\)"),
+      t("$"),
       i(0),
   }, { condition = in_text }),
   -- Lowercase Greek

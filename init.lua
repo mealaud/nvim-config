@@ -153,3 +153,4 @@ pcall(require('telescope').load_extension, 'fzf')
 -- switch between buffers (i love buffferline)
 map({'n', 'x'}, '<S-tab>', ':bn<CR>', { silent = true })
 map({'n', 'x'}, '<S-x>', ':bd<CR>', { silent = true })
+
