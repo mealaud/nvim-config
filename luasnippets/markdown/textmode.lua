@@ -9,12 +9,12 @@ local extras = require("luasnip.extras")
 local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
 
-local m = require("funs")
+local m = require("mdfuns")
 
 
-ls.add_snippets("tex", {
-  s(":fo", t("(\\(\\Rightarrow\\))"), { condition = in_text }),
-  s(":re", t("(\\(\\Leftarrow\\))"), { condition = in_text }),
-  s(":su", t("(\\(\\subseteq\\))"), { condition = in_text }),
-  s(":Su", t("(\\(\\supseteq\\))"), { condition = in_text }),
+ls.add_snippets("markdown", {
+  s(":fo", t("($\\Rightarrow$)"), { condition = m.in_text }),
+  s(":re", t("($\\Leftarrow$)"), { condition = m.in_text }),
+  s(":su", t("($\\subseteq$)"), { condition = m.in_text }),
+  s(":Su", t("($\\supseteq$)"), { condition = m.in_text }),
 }, { type = "autosnippets" })

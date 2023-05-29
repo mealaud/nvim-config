@@ -41,7 +41,7 @@ DELIMITERS["s"] = "set"
 ls.add_snippets("markdown", {
   -- display math
   s("dm", {
-      t({ "$$", "\t" }),
+      t({"", "$$", "\t" }),
       i(0),
       t({ "", "$$" }),
   }, { condition = m.in_text }),

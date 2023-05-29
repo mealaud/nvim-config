@@ -1,7 +1,5 @@
 local m = {}
 
-local ts_utils = require("nvim-treesitter.ts_utils")
-
 m.in_mathzone = function()
     local current_node = vim.treesitter.get_node({ ignore_injections = false })
     while current_node do
@@ -16,6 +14,11 @@ end
 
 m.in_text = function()
     return not m.in_mathzone()
+end
+
+m.begins_line = function()
+    local cur_line = vim.api.nvim_get_current_line()
+    return #cur_line == #string.match(cur_line, "%s*[^%s]+")
 end
 
 return m
