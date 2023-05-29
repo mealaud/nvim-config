@@ -173,7 +173,7 @@ ls.add_snippets("tex", {
     i(2),
     t("}"),
     i(3),
-    t(" \\, \\mathrm dx"),
+    t(" \\, \\mathrm d "),
     i(0),
   }, { condition = m.in_mathzone }),
   s("dx", {t("\\, \\mathrm d "), i(0)}, { condition = m.in_mathzone }),
