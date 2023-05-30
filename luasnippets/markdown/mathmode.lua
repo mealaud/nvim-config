@@ -18,6 +18,7 @@ GREEK_LETTERS["b"] = "beta"
 GREEK_LETTERS["c"] = "chi"
 GREEK_LETTERS["d"] = "delta"
 GREEK_LETTERS["e"] = "varepsilon"
+GREEK_LETTERS["v"] = "varphi"
 GREEK_LETTERS["f"] = "phi"
 GREEK_LETTERS["g"] = "gamma"
 GREEK_LETTERS["i"] = "iota"
@@ -31,12 +32,6 @@ GREEK_LETTERS["u"] = "vartheta"
 GREEK_LETTERS["w"] = "omega"
 GREEK_LETTERS["x"] = "xi"
 GREEK_LETTERS["z"] = "zeta"
-
-local DELIMITERS = {}
-DELIMITERS["a"] = "abs"
-DELIMITERS["b"] = "bigbra"
-DELIMITERS["p"] = "bigpar"
-DELIMITERS["s"] = "set"
 
 ls.add_snippets("markdown", {
   -- display math
@@ -101,11 +96,11 @@ ls.add_snippets("markdown", {
   s({ trig = "o+", wordTrig = false }, t("\\oplus "), { condition = m.in_mathzone }),
   -- LaTeX: Center dot
   s({ trig = "**", wordTrig = false }, t("\\cdot "), { condition = m.in_mathzone }),
-  -- Up arrow
-  s("->", t("\\to"), { condition = m.in_mathzone }),
-  -- Down arrow
-  s("^>", t("\\uparrow"), { condition = m.in_mathzone }),
   -- Normal arrow
+  s("->", t("\\to"), { condition = m.in_mathzone }),
+  -- Up arrow
+  s("^>", t("\\uparrow"), { condition = m.in_mathzone }),
+  -- Down arrow
   s(".>", t("\\downarrow"), { condition = m.in_mathzone }),
   -- Overline
   s("--", {t("\\overline{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
@@ -116,7 +111,7 @@ ls.add_snippets("markdown", {
   -- ldots
   s("..", t("\\ldots"), { condition = m.in_mathzone }),
   -- fraction
-  s("fr", {t("\\frac{"), i(1), t("}{"), i(2), t("}"), i(0)}),
+  s("fr", {t("\\frac{"), i(1), t("}{"), i(2), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- coloneqq
   s(":=", t("\\coloneqq"), { condition = m.in_mathzone }),
   -- subseteq
@@ -149,17 +144,34 @@ ls.add_snippets("markdown", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
-  -- big paren/brac/set/abs/other left-right delimiters
-  s( { trig = "[b]([absp])", regTrig = true, wordTrig = false }, {
-    f(function(_, snip)
-      if DELIMITERS[snip.captures[1]] then
-        return "\\" .. DELIMITERS[snip.captures[1]] .. "{"
-      end
-      return ""
-    end),
+  s({ trig = "ba", wordTrig = false }, {
+    t("\\left | "),
     i(1),
-    t("}"),
+    t(" \\right | "),
     i(0),
+  }, { condition = m.in_mathzone }),
+  s({ trig = "bb", wordTrig = false }, {
+    t("\\left [ "),
+    i(1),
+    t(" \\right ] "),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s({ trig = "bs", wordTrig = false }, {
+    t("\\left \\\\{ "),
+    i(1),
+    t(" \\right \\\\} "),
+    i(0),
+  }, { condition = m.in_mathzone }), 
+  s({ trig = "bp", wordTrig = false }, {
+    t("\\left ( "),
+    i(1),
+    t(" \\right ) "),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s( { trig = "[\\](%u)", regTrig = true, wordTrig = false }, {
+    f(function(_, snip)
+      return "\\mathbb{" .. snip.captures[1] .. "}"
+    end)
   }, { condition = m.in_mathzone }),
   s( { trig = "([^\\])lim", regTrig = true, wordTrig = false}, {
     t("\\lim_{"),
@@ -174,7 +186,7 @@ ls.add_snippets("markdown", {
     i(2),
     t("}"),
     i(3),
-    t(" \\, \\mathrm d "),
+    t(" \\\\, \\mathrm d "),
     i(0),
   }, { condition = m.in_mathzone }),
   s("dx", {t("\\, \\mathrm d "), i(0)}, { condition = m.in_mathzone }),
@@ -214,4 +226,5 @@ ls.add_snippets("markdown", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  s("ker", t("\\mathrm{ker}"), { condition = m.in_mathzone }),
 }, { type = "autosnippets" })
