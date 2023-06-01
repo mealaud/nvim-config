@@ -38,13 +38,12 @@ ls.add_snippets("markdown", {
     --   t(),
     --   { t("{\\label{"), i(1), t("}}") }
     -- }),
-    t({"\"%}}", ""}),
+    t({"\" %}}", ""}),
     i(0),
     t({"","{{% /MathEnv %}}",""}),
   }, { condition = m.in_text and m.begins_line }),
   s(";al", {
-    t(""),
-    t("$$\\begin{align"),
+    t({"","$$\\begin{align"}),
     c(1, {
       t(),
       t("*"),
@@ -55,6 +54,8 @@ ls.add_snippets("markdown", {
     rep(1),
     t("}$$"),
   }, { condition = m.in_text }),
+   -- newlines in align/math
+   s("\\\\", t("\\\\\\\\"), { condition = m.in_mathzone }),
    -- proof env
   s({ trig = ";([o])", regTrig = true, wordTrig = false }, {
     t({"{{% Proof %}}", ""}),

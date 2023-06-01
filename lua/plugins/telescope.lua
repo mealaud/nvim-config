@@ -9,7 +9,7 @@ return {
       vim.env.MATH = '~/math/'
       vim.env.LATEX = '~/latex/'
       vim.env.WEBSITE = '~/websites/mealaud.github.io'
-      vim.env.TESTTHEME = '~/websites/mealaud.github.io/themes/hugo-starter-theme'
+      vim.env.THEME = '~/websites/mealaud.github.io/themes/melguy'
 
       -- Telescope keymaps
       vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep)
@@ -27,9 +27,13 @@ return {
       vim.keymap.set('n', '<leader>th', function()
         require('telescope.builtin').find_files({
           prompt_title = 'Website Theme',
-          cwd = vim.env.TESTTHEME,
+          cwd = vim.env.THEME,
           file_ignore_patterns = {
             "static/font/.*",
+            "static/css/fonts/.*",
+            "static/js/katex.*",
+            "static/css/katex.min.css",
+            -- "static/js/auto-render.min.js",
           }
         })
       end, { silent = true })

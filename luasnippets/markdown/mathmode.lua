@@ -96,16 +96,18 @@ ls.add_snippets("markdown", {
   s({ trig = "o+", wordTrig = false }, t("\\oplus "), { condition = m.in_mathzone }),
   -- LaTeX: Center dot
   s({ trig = "**", wordTrig = false }, t("\\cdot "), { condition = m.in_mathzone }),
+  -- inverse/exp -1
+  s({ trig = "\\inv", wordTrig = false }, t("^{-1}"), { condition = m.in_mathzone }),
   -- Normal arrow
-  s("->", t("\\to"), { condition = m.in_mathzone }),
-  -- Up arrow
-  s("^>", t("\\uparrow"), { condition = m.in_mathzone }),
-  -- Down arrow
-  s(".>", t("\\downarrow"), { condition = m.in_mathzone }),
+  -- s({ trig = "\->", regTrig = false, wordTrig = false }, t("\\to"), { condition = m.in_mathzone }),
+  -- -- Up arrow
+  -- s("^>", t("\\uparrow"), { condition = m.in_mathzone }),
+  -- -- Down arrow
+  -- s(".>", t("\\downarrow"), { condition = m.in_mathzone }),
   -- Overline
   s("--", {t("\\overline{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Widetilde
-  s("~~", {t("\\widesim{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
+  s("~~", {t("\\widetilde{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Colon
   s("::", t("\\colon"), { condition = m.in_mathzone }),
   -- ldots
@@ -126,6 +128,8 @@ ls.add_snippets("markdown", {
   s("bf", fmt([[\mathbf{{{}}}]], i(1)), { condition = m.in_mathzone }),
   -- LaTeX: Romanized math
   s("rm", fmt([[\mathrm{{{}}}]], i(1)), { condition = m.in_mathzone }),
+  -- operators
+  s("on", fmt([[\operatorname{{{}}}]], i(1)), { condition = m.in_mathzone }),
   -- LaTeX: Math calligraphy
   s("mcal", fmt([[\mathcal{{{}}}]], i(1)), { condition = m.in_mathzone }),
   -- LaTeX: Math script
