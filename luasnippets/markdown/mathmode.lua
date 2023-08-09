@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-globalmarkdown
 local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
@@ -20,6 +20,7 @@ GREEK_LETTERS["d"] = "delta"
 GREEK_LETTERS["e"] = "varepsilon"
 GREEK_LETTERS["v"] = "varphi"
 GREEK_LETTERS["f"] = "phi"
+GREEK_LETTERS["p"] = "psi"
 GREEK_LETTERS["g"] = "gamma"
 GREEK_LETTERS["i"] = "iota"
 GREEK_LETTERS["l"] = "lambda"
@@ -41,10 +42,9 @@ ls.add_snippets("markdown", {
       t({ "", "$$" }),
   }, { condition = m.in_text }),
   s("mm", {
-      t("$"),
-      t(" "),
+      t("$ "),
       i(1),
-      t("$"),
+      t(" $"),
       i(0),
   }, { condition = m.in_text }),
   -- Lowercase Greek
@@ -98,12 +98,14 @@ ls.add_snippets("markdown", {
   s({ trig = "**", wordTrig = false }, t("\\cdot "), { condition = m.in_mathzone }),
   -- inverse/exp -1
   s({ trig = "\\inv", wordTrig = false }, t("^{-1}"), { condition = m.in_mathzone }),
+  -- Exterior differential
+  s("xd", t("\\mathbf{\\mathrm{d}}"), { condition = m.in_mathzone }),
   -- Normal arrow
-  -- s({ trig = "\->", regTrig = false, wordTrig = false }, t("\\to"), { condition = m.in_mathzone }),
-  -- -- Up arrow
-  -- s("^>", t("\\uparrow"), { condition = m.in_mathzone }),
-  -- -- Down arrow
-  -- s(".>", t("\\downarrow"), { condition = m.in_mathzone }),
+  -- s("->", t("\\to"), { condition = m.in_mathzone }),
+  -- Up arrow
+  s("-^", t("\\uparrow"), { condition = m.in_mathzone }),
+  -- Down arrow
+  s("-.", t("\\downarrow"), { condition = m.in_mathzone }),
   -- Overline
   s("--", {t("\\overline{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Widetilde
@@ -113,7 +115,7 @@ ls.add_snippets("markdown", {
   -- ldots
   s("..", t("\\ldots"), { condition = m.in_mathzone }),
   -- fraction
-  s("fr", {t("\\frac{"), i(1), t("}{"), i(2), t("}"), i(0)}, { condition = m.in_mathzone }),
+  s("fr", {t("\\frac{ "), i(1), t(" }{ "), i(2), t(" }"), i(0)}, { condition = m.in_mathzone }),
   -- coloneqq
   s(":=", t("\\coloneqq"), { condition = m.in_mathzone }),
   -- subseteq
@@ -230,5 +232,4 @@ ls.add_snippets("markdown", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
-  s("ker", t("\\mathrm{ker}"), { condition = m.in_mathzone }),
 }, { type = "autosnippets" })

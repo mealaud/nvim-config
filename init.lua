@@ -42,8 +42,18 @@ map('n', '<Space>s', ':edit $MYVIMRC<CR>', { silent = true })
 map('n', 'H', '^', {})
 map('n', 'L', '$', {})
 -- Update/save a file (normal and insert modes different bc think about it)
-map('n', '<C-s>', ':w!<CR>', { silent = true })
-map({'i', 'x'}, '<C-s>', '<Esc>:w!<CR>a', { silent = true })
+-- function to update website map if in teh correct directory!
+local dataFiles = {["mealaud.github.io/content/map/allpagesgraphdata.json"] = true}
+local function update_map_data()
+  if string.find(vim.fn.getcwd(), "mealaud.github.io") ~= nil then
+    if dataFiles[vim.cmd("file!")] == nil then
+      os.execute("~/mealaud.github.io/updatemap.sh")
+    end
+  end
+  vim.cmd("write!")
+end
+vim.keymap.set('n', '<C-s>', update_map_data, { silent = true })
+map({'i', 'x'}, '<C-s>', update_map_data, { silent = true })
 -- Buffer navigatin'
 map('n', '<C-h>', '<C-w>h', { silent = true })
 map('n', '<C-j>', '<C-w>j', { silent = true })
@@ -103,17 +113,17 @@ opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins')
 
 -- Converting to website katex format ezpz
-map({'n', 'i'}, '<M-t>', function() 
-  vim.cmd.write()
-  local commands = {
-    "cat '" .. vim.fn.expand("%") .. "'",
-    [[sed -E 's/\$([^$]+)\$/[katex]\1[\/katex]/g']],
-    [[sed -E 's/\\\[/[katex display=true]/g']],
-    [[sed -E 's/\\\]/[\/katex]/g']],
-    [[xclip -selection clipboard]],
-  }
-  vim.fn.jobstart(table.concat(commands, " | "), {detach = true})
-end)
+-- map({'n', 'i'}, '<M-t>', function() 
+--   vim.cmd.write()
+--   local commands = {
+--     "cat '" .. vim.fn.expand("%") .. "'",
+--     [[sed -E 's/\$([^$]+)\$/[katex]\1[\/katex]/g']],
+--     [[sed -E 's/\\\[/[katex display=true]/g']],
+--     [[sed -E 's/\\\]/[\/katex]/g']],
+--     [[xclip -selection clipboard]],
+--   }
+--   vim.fn.jobstart(table.concat(commands, " | "), {detach = true})
+-- end)
 
 -- Begin compilation for .tex files
 map('n', '<M-s>', ':VimtexCompile<CR>', { silent = true })

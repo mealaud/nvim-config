@@ -8,8 +8,8 @@ return {
       vim.env.CONFIG = '~/.config/nvim/'
       vim.env.MATH = '~/math/'
       vim.env.LATEX = '~/latex/'
-      vim.env.WEBSITE = '~/websites/mealaud.github.io'
-      vim.env.THEME = '~/websites/mealaud.github.io/themes/melguy'
+      vim.env.WEBSITE = '~/mealaud.github.io'
+      vim.env.THEME = '~/mealaud.github.io/themes/melguy'
 
       -- Telescope keymaps
       vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep)

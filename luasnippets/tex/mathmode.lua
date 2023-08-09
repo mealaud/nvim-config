@@ -45,10 +45,9 @@ ls.add_snippets("tex", {
       t({ "", "\\]" }),
   }, { condition = m.in_text }),
   s("mm", {
-      t("\\("),
-      t(" "),
+      t("$"),
       i(1),
-      t("\\)"),
+      t("$"),
       i(0),
   }, { condition = m.in_text }),
   -- Lowercase Greek
@@ -115,7 +114,7 @@ ls.add_snippets("tex", {
   -- ldots
   s("..", t("\\ldots"), { condition = m.in_mathzone }),
   -- fraction
-  s("fr", {t("\\frac{"), i(1), t("}{"), i(2), t("}"), i(0)}),
+  s("fr", {t("\\frac{"), i(1), t("}{"), i(2), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- coloneqq
   s(":=", t("\\coloneqq"), { condition = m.in_mathzone }),
   -- subseteq

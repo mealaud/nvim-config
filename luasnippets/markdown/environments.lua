@@ -22,11 +22,12 @@ ENVS["r"] = "rem"
 ENVS["o"] = "pf"
 ENVS["e"] = "ex"
 ENVS["u"] = "up"
+ENVS["x"] = "x"
 
 
 ls.add_snippets("markdown", {
   -- math environments
-  s({ trig = ";([tlpcdreu])", regTrig = true, wordTrig = false }, {
+  s({ trig = ";([tlpcdreubx])", regTrig = true, wordTrig = false }, {
     t("{{% MathEnv \""),
     f(function(_, snip)
       if ENVS[snip.captures[1]] then
