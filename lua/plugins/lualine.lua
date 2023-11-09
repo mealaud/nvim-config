@@ -11,7 +11,7 @@ return {
 
       sections = {
         lualine_a = {'mode'},
-        lualine_b = {''},
+        lualine_b = {'searchcount'},
         lualine_c = {''},
         lualine_x = {''},
         lualine_y = {'diff'},

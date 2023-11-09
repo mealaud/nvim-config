@@ -25,6 +25,9 @@ return {
                     "markdown",
                     "markdown_inline",
                     "vim",
+                    "javascript",
+                    "latex",
+                    "html",
                 },
                 highlight = {
                     enable = true,

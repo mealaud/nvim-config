@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-globalmarkdown
 local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
@@ -10,14 +10,17 @@ local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
 
 local m = require("funs")
+
 -- Mel function
 local GREEK_LETTERS = {}
 GREEK_LETTERS["a"] = "alpha"
 GREEK_LETTERS["b"] = "beta"
 GREEK_LETTERS["c"] = "chi"
 GREEK_LETTERS["d"] = "delta"
-GREEK_LETTERS["e"] = "e"
+GREEK_LETTERS["e"] = "varepsilon"
+GREEK_LETTERS["v"] = "varphi"
 GREEK_LETTERS["f"] = "phi"
+GREEK_LETTERS["p"] = "psi"
 GREEK_LETTERS["g"] = "gamma"
 GREEK_LETTERS["i"] = "iota"
 GREEK_LETTERS["l"] = "lambda"
@@ -31,23 +34,17 @@ GREEK_LETTERS["w"] = "omega"
 GREEK_LETTERS["x"] = "xi"
 GREEK_LETTERS["z"] = "zeta"
 
-local DELIMITERS = {}
-DELIMITERS["a"] = "abs"
-DELIMITERS["b"] = "bigbra"
-DELIMITERS["p"] = "bigpar"
-DELIMITERS["s"] = "set"
-
 ls.add_snippets("tex", {
   -- display math
   s("dm", {
-      t({ "\\[", "\t" }),
+      t({"", "$$", "\t" }),
       i(0),
-      t({ "", "\\]" }),
+      t({ "", "$$" }),
   }, { condition = m.in_text }),
   s("mm", {
-      t("$"),
+      t("$ "),
       i(1),
-      t("$"),
+      t(" $"),
       i(0),
   }, { condition = m.in_text }),
   -- Lowercase Greek
@@ -99,22 +96,26 @@ ls.add_snippets("tex", {
   s({ trig = "o+", wordTrig = false }, t("\\oplus "), { condition = m.in_mathzone }),
   -- LaTeX: Center dot
   s({ trig = "**", wordTrig = false }, t("\\cdot "), { condition = m.in_mathzone }),
-  -- Up arrow
-  s("->", t("\\to"), { condition = m.in_mathzone }),
-  -- Down arrow
-  s("^>", t("\\uparrow"), { condition = m.in_mathzone }),
+  -- inverse/exp -1
+  s({ trig = "\\inv", wordTrig = false }, t("^{-1}"), { condition = m.in_mathzone }),
+  -- Exterior differential
+  s("xd", t("\\mathbf{\\mathrm{d}}"), { condition = m.in_mathzone }),
   -- Normal arrow
-  s(".>", t("\\downarrow"), { condition = m.in_mathzone }),
+  -- s("->", t("\\to"), { condition = m.in_mathzone }),
+  -- Up arrow
+  s("-^", t("\\uparrow"), { condition = m.in_mathzone }),
+  -- Down arrow
+  s("-.", t("\\downarrow"), { condition = m.in_mathzone }),
   -- Overline
   s("--", {t("\\overline{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Widetilde
-  s("~~", {t("\\widesim{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
+  s("~~", {t("\\widetilde{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Colon
   s("::", t("\\colon"), { condition = m.in_mathzone }),
   -- ldots
   s("..", t("\\ldots"), { condition = m.in_mathzone }),
   -- fraction
-  s("fr", {t("\\frac{"), i(1), t("}{"), i(2), t("}"), i(0)}, { condition = m.in_mathzone }),
+  s("fr", {t("\\frac{ "), i(1), t(" }{ "), i(2), t(" }"), i(0)}, { condition = m.in_mathzone }),
   -- coloneqq
   s(":=", t("\\coloneqq"), { condition = m.in_mathzone }),
   -- subseteq
@@ -129,6 +130,8 @@ ls.add_snippets("tex", {
   s("bf", fmt([[\mathbf{{{}}}]], i(1)), { condition = m.in_mathzone }),
   -- LaTeX: Romanized math
   s("rm", fmt([[\mathrm{{{}}}]], i(1)), { condition = m.in_mathzone }),
+  -- operators
+  s("on", fmt([[\operatorname{{{}}}]], i(1)), { condition = m.in_mathzone }),
   -- LaTeX: Math calligraphy
   s("mcal", fmt([[\mathcal{{{}}}]], i(1)), { condition = m.in_mathzone }),
   -- LaTeX: Math script
@@ -147,17 +150,34 @@ ls.add_snippets("tex", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
-  -- big paren/brac/set/abs/other left-right delimiters
-  s( { trig = "[b]([absp])", regTrig = true, wordTrig = false }, {
-    f(function(_, snip)
-      if DELIMITERS[snip.captures[1]] then
-        return "\\" .. DELIMITERS[snip.captures[1]] .. "{"
-      end
-      return ""
-    end),
+  s({ trig = "ba", wordTrig = false }, {
+    t("\\left | "),
     i(1),
-    t("}"),
+    t(" \\right | "),
     i(0),
+  }, { condition = m.in_mathzone }),
+  s({ trig = "bb", wordTrig = false }, {
+    t("\\left [ "),
+    i(1),
+    t(" \\right ] "),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s({ trig = "bs", wordTrig = false }, {
+    t("\\left \\{ "),
+    i(1),
+    t(" \\right \\} "),
+    i(0),
+  }, { condition = m.in_mathzone }), 
+  s({ trig = "bp", wordTrig = false }, {
+    t("\\left ( "),
+    i(1),
+    t(" \\right ) "),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s( { trig = "[\\](%u)", regTrig = true, wordTrig = false }, {
+    f(function(_, snip)
+      return "\\mathbb{" .. snip.captures[1] .. "}"
+    end)
   }, { condition = m.in_mathzone }),
   s( { trig = "([^\\])lim", regTrig = true, wordTrig = false}, {
     t("\\lim_{"),
@@ -184,6 +204,22 @@ ls.add_snippets("tex", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  s( { trig = "([^\\])bup", regTrig = true, wordTrig = false}, {
+    t("\\bigcup{"),
+    i(1),
+    t("}^{"),
+    i(2),
+    t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s( { trig = "([^\\])bin", regTrig = true, wordTrig = false}, {
+    t("\\bigcap{"),
+    i(1),
+    t("}^{"),
+    i(2),
+    t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
   s("idx", {
     t("\\mathrm d "),
     i(1),
@@ -196,6 +232,12 @@ ls.add_snippets("tex", {
     t("}{\\mathrm d "),
     i(2),
     t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s("<>", {
+    t("\\left \\langle "),
+    i(1),
+    t("\\right \\rangle"),
     i(0),
   }, { condition = m.in_mathzone }),
   s("ipx", {

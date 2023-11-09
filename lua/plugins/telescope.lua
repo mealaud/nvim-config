@@ -5,11 +5,10 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
        -- Environments
-      vim.env.CONFIG = '~/.config/nvim/'
-      vim.env.MATH = '~/math/'
-      vim.env.LATEX = '~/latex/'
-      vim.env.WEBSITE = '~/mealaud.github.io'
-      vim.env.THEME = '~/mealaud.github.io/themes/melguy'
+      vim.env.CONFIG = '/home/mel/.config/nvim/'
+      vim.env.MATH = '/home/mel/math/'
+      vim.env.LATEX = '/home/mel/tex/'
+      vim.env.WEBSITE = '/home/mel/mealaud.github.io'
 
       -- Telescope keymaps
       vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep)
@@ -20,20 +19,22 @@ return {
           cwd = vim.env.WEBSITE,
           file_ignore_patterns = {
             "themes/.*",
-          }
-        })
-      end, { silent = true })
-
-      vim.keymap.set('n', '<leader>th', function()
-        require('telescope.builtin').find_files({
-          prompt_title = 'Website Theme',
-          cwd = vim.env.THEME,
-          file_ignore_patterns = {
-            "static/font/.*",
-            "static/css/fonts/.*",
-            "static/js/katex.*",
-            "static/css/katex.min.css",
-            -- "static/js/auto-render.min.js",
+            "public/.*",
+            "static/svgs/.*",
+            "static/fonts/.*",
+            "static/logo/.*",
+            "static/images/.*",
+            "%.PNG",
+            "%.png",
+            "%.JPG",
+            "%.jpg",
+            "%.JPEG",
+            "%.jpeg",
+            "%.woff",
+            "%.woff2",
+            "%.ttf",
+            "%.eot",
+            "%.svg",
           }
         })
       end, { silent = true })
@@ -42,30 +43,6 @@ return {
         require('telescope.builtin').find_files({
           prompt_title = 'Config',
           cwd = vim.env.CONFIG
-        })
-      end, { silent = true })
-
-      vim.keymap.set('n', '<leader>mp', function()
-        require('telescope.builtin').find_files({
-          prompt_title = 'Math PDFs',
-          cwd = vim.env.MATH,
-          file_ignore_patterns = {
-             -- Tex temporary files
-             "%.out",
-             "%.aux",
-             "%.tex",
-             "%.bbl",
-             "%.bcf",
-             "%.blg",
-             "%.fdb_latexmk",
-             "%.fls",
-             "%.log",
-             "%.pdf_tex",
-             "%.synctex.gz",
-             "%.ttf",
-             "%.xdv",
-             "%.toc",
-          }
         })
       end, { silent = true })
 

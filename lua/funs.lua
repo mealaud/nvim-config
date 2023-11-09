@@ -8,7 +8,8 @@ m.in_mathzone = function()
 end
 
 m.in_text = function()
-    return not m.in_mathzone() and not m.in_comment()
+    return not m.in_mathzone()
+    -- return not m.in_mathzone() and not m.in_comment()
 end
 
 m.begins_line = function()

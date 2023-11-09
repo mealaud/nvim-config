@@ -20,6 +20,7 @@ ENVS["c"] = "corollary"
 ENVS["d"] = "defn"
 ENVS["r"] = "rem"
 ENVS["o"] = "pf"
+ENVS["x"] = "exer"
 
 
 ls.add_snippets("tex", {
@@ -40,7 +41,7 @@ ls.add_snippets("tex", {
     t({"","\\end{result}",""}),
   }, { condition = m.in_text and m.begins_line }),
   -- Other environments
-  s({ trig = ";([dro])", regTrig = true, wordTrig = false }, {
+  s({ trig = ";([drox])", regTrig = true, wordTrig = false }, {
     t("\\begin{"),
     f(function(_, snip)
       if ENVS[snip.captures[1]] then

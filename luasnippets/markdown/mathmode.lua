@@ -204,6 +204,22 @@ ls.add_snippets("markdown", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  s( { trig = "([^\\])bup", regTrig = true, wordTrig = false}, {
+    t("\\bigcup{"),
+    i(1),
+    t("}^{"),
+    i(2),
+    t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s( { trig = "([^\\])bin", regTrig = true, wordTrig = false}, {
+    t("\\bigcap{"),
+    i(1),
+    t("}^{"),
+    i(2),
+    t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
   s("idx", {
     t("\\mathrm d "),
     i(1),
