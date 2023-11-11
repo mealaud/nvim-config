@@ -25,7 +25,7 @@ GREEK_LETTERS["g"] = "gamma"
 GREEK_LETTERS["i"] = "iota"
 GREEK_LETTERS["l"] = "lambda"
 GREEK_LETTERS["m"] = "mu"
-GREEK_LETTERS["n"] = "nu"
+GREEK_LETTERS["n"] = "nabla"
 GREEK_LETTERS["r"] = "rho"
 GREEK_LETTERS["s"] = "sigma"
 GREEK_LETTERS["t"] = "theta"
@@ -253,5 +253,8 @@ ls.add_snippets("tex", {
     i(2),
     t("}"),
     i(0),
+  }, { condition = m.in_mathzone }),
+  s("\\p", {
+    t("\\partial"),
   }, { condition = m.in_mathzone }),
 }, { type = "autosnippets" })

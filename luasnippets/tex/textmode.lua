@@ -13,8 +13,20 @@ local m = require("funs")
 
 
 ls.add_snippets("tex", {
-  s(":fo", t("(\\(\\Rightarrow\\))"), { condition = in_text }),
-  s(":re", t("(\\(\\Leftarrow\\))"), { condition = in_text }),
-  s(":su", t("(\\(\\subseteq\\))"), { condition = in_text }),
-  s(":Su", t("(\\(\\supseteq\\))"), { condition = in_text }),
+  s(":fo", t("(\\(\\Rightarrow\\))"), { condition = m.in_text }),
+  s(":re", t("(\\(\\Leftarrow\\))"), { condition = m.in_text }),
+  s(":su", t("(\\(\\subseteq\\))"), { condition = m.in_text }),
+  s(":Su", t("(\\(\\supseteq\\))"), { condition = m.in_text }),
+  s("*", {
+    t("\\textbf{"),
+    i(1),
+    t("}"),
+    i(0),
+  }, { condition = m.in_text }),
+  s("_", {
+    t("\\textit{"),
+    i(1),
+    t("}"),
+    i(0),
+  }, { condition = m.in_text }),
 }, { type = "autosnippets" })
