@@ -86,8 +86,12 @@ ls.add_snippets("tex", {
   }, { condition = m.in_mathzone }),
   -- LaTeX: Less than or equal to
   s({ trig = "<=", wordTrig = false }, t("\\leq"), { condition = m.in_mathzone }),
+  -- LaTeX: lesssim
+  s({ trig = "<~", wordTrig = false }, t("\\lesssim"), { condition = m.in_mathzone }),
   -- LaTeX: Greater than or equal to
   s({ trig = ">=", wordTrig = false }, t("\\geq"), { condition = m.in_mathzone }),
+  -- LaTeX: gtrsim
+  s({ trig = ">~", wordTrig = false }, t("\\lesssim"), { condition = m.in_mathzone }),
   -- LaTeX: Times
   s({ trig = "xx", wordTrig = false }, t("\\times "), { condition = m.in_mathzone }),
   -- LaTeX: Otimes
@@ -154,6 +158,12 @@ ls.add_snippets("tex", {
     t("\\left | "),
     i(1),
     t(" \\right | "),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s({ trig = "bn", wordTrig = false }, {
+    t("\\left | \\left | "),
+    i(1),
+    t(" \\right | \\right | "),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bb", wordTrig = false }, {
