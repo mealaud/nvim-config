@@ -112,6 +112,8 @@ ls.add_snippets("tex", {
   s("-.", t("\\downarrow"), { condition = m.in_mathzone }),
   -- Overline
   s("--", {t("\\overline{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
+  -- Widehat
+  s("@@", {t("\\widehat{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Widetilde
   s("~~", {t("\\widetilde{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Colon
@@ -161,9 +163,9 @@ ls.add_snippets("tex", {
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bn", wordTrig = false }, {
-    t("\\left | \\left | "),
+    t("\\left \\lVert "),
     i(1),
-    t(" \\right | \\right | "),
+    t(" \\right \\rVert "),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bb", wordTrig = false }, {
@@ -215,7 +217,7 @@ ls.add_snippets("tex", {
     i(0),
   }, { condition = m.in_mathzone }),
   s( { trig = "([^\\])bup", regTrig = true, wordTrig = false}, {
-    t("\\bigcup{"),
+    t("\\bigcup_{"),
     i(1),
     t("}^{"),
     i(2),
@@ -223,7 +225,7 @@ ls.add_snippets("tex", {
     i(0),
   }, { condition = m.in_mathzone }),
   s( { trig = "([^\\])bin", regTrig = true, wordTrig = false}, {
-    t("\\bigcap{"),
+    t("\\bigcap_{"),
     i(1),
     t("}^{"),
     i(2),

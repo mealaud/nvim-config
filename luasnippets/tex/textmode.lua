@@ -13,6 +13,12 @@ local m = require("funs")
 
 
 ls.add_snippets("tex", {
+  s(";q", {
+    t("\\textcolor{red}{"),
+    i(1),
+    t("}"),
+    i(0),
+  }, { condition = m.in_text }),
   s(":fo", t("(\\(\\Rightarrow\\))"), { condition = m.in_text }),
   s(":re", t("(\\(\\Leftarrow\\))"), { condition = m.in_text }),
   s(":su", t("(\\(\\subseteq\\))"), { condition = m.in_text }),

@@ -88,14 +88,16 @@ ls.add_snippets("markdown", {
   s({ trig = "<=", wordTrig = false }, t("\\leq"), { condition = m.in_mathzone }),
   -- LaTeX: Greater than or equal to
   s({ trig = ">=", wordTrig = false }, t("\\geq"), { condition = m.in_mathzone }),
+  -- LaTeX: Composition 
+  s({ trig = "oo", wordTrig = false }, t("\\circ"), { condition = m.in_mathzone }),
   -- LaTeX: Times
-  s({ trig = "xx", wordTrig = false }, t("\\times "), { condition = m.in_mathzone }),
+  s({ trig = "xx", wordTrig = false }, t("\\times"), { condition = m.in_mathzone }),
   -- LaTeX: Otimes
-  s({ trig = "ox", wordTrig = false }, t("\\otimes "), { condition = m.in_mathzone }),
+  s({ trig = "ox", wordTrig = false }, t("\\otimes"), { condition = m.in_mathzone }),
   -- LaTeX: Oplus
-  s({ trig = "o+", wordTrig = false }, t("\\oplus "), { condition = m.in_mathzone }),
+  s({ trig = "o+", wordTrig = false }, t("\\oplus"), { condition = m.in_mathzone }),
   -- LaTeX: Center dot
-  s({ trig = "**", wordTrig = false }, t("\\cdot "), { condition = m.in_mathzone }),
+  s({ trig = "**", wordTrig = false }, t("\\cdot"), { condition = m.in_mathzone }),
   -- inverse/exp -1
   s({ trig = "\\inv", wordTrig = false }, t("^{-1}"), { condition = m.in_mathzone }),
   -- Exterior differential
@@ -150,28 +152,34 @@ ls.add_snippets("markdown", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  s({ trig = "bn", wordTrig = false }, {
+    t("\\left \\lVert "),
+    i(1),
+    t(" \\right \\rVert"),
+    i(0),
+  }, { condition = m.in_mathzone }),
   s({ trig = "ba", wordTrig = false }, {
     t("\\left | "),
     i(1),
-    t(" \\right | "),
+    t(" \\right |"),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bb", wordTrig = false }, {
     t("\\left [ "),
     i(1),
-    t(" \\right ] "),
+    t(" \\right ]"),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bs", wordTrig = false }, {
     t("\\left \\\\{ "),
     i(1),
-    t(" \\right \\\\} "),
+    t(" \\right \\\\}"),
     i(0),
   }, { condition = m.in_mathzone }), 
   s({ trig = "bp", wordTrig = false }, {
     t("\\left ( "),
     i(1),
-    t(" \\right ) "),
+    t(" \\right )"),
     i(0),
   }, { condition = m.in_mathzone }),
   s( { trig = "[\\](%u)", regTrig = true, wordTrig = false }, {
@@ -218,6 +226,12 @@ ls.add_snippets("markdown", {
     t("}^{"),
     i(2),
     t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s("><", {
+    t("\\left \\langle "),
+    i(1),
+    t("\\right \\rangle"),
     i(0),
   }, { condition = m.in_mathzone }),
   s("idx", {
