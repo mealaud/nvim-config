@@ -1,6 +1,5 @@
 return {
   'lervag/vimtex',
-  ft = {'tex','markdown'},
   version = '*',
   config = function()
     vim.g.tex_flavor = 'latex'

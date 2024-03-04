@@ -68,7 +68,7 @@ ls.add_snippets("markdown", {
   }, { condition = m.in_mathzone }),
   -- LaTeX: Math subscripts
   s({ trig = "__", wordTrig = false }, {
-    t("\\_{"),
+    t("_{"),
     i(1),
     t("}"),
   }, { condition = m.in_mathzone }),
@@ -150,6 +150,12 @@ ls.add_snippets("markdown", {
     t("{"),
     i(2),
     t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
+  s({ trig = "<>", wordTrig = false }, {
+    t("\\left \\langle "),
+    i(1),
+    t("\\right \\rangle"),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bn", wordTrig = false }, {

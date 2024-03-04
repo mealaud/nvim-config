@@ -6,10 +6,17 @@ local autocmd = vim.api.nvim_create_autocmd
 local opt = vim.opt
 local g = vim.g
 
+-- conceallevel for latex
+opt.conceallevel = 1
+
 -- indentation nonsense
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.tabstop = 2
+opt.autoindent = false
+vim.g.vimtex_indent_enabled = false
+
+-- opt.textwidth = 55
 
 -- Set cursor line settings
 opt.wrap = true
