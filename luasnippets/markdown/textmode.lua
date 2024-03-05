@@ -19,5 +19,6 @@ ls.add_snippets("markdown", {
   s(":Su", t("($\\supseteq$)"), { condition = m.in_text }),
   s("\\\\", t("{{%nl%}}"), { condition = m.in_text }),
   s(":td", {t("{{% tdf \""), i(1), t("\" %}} "), i(0)}, { condition = m.in_text } ),
+  s(",,", t("&nbsp;&nbsp;&nbsp;&nbsp;"), { condition = m.in_text and m.begins_line } ),
   -- s("\\n", t("{{%nl%}}"), { condition = m.in_text }),
 }, { type = "autosnippets" })

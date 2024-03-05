@@ -6,6 +6,10 @@ local autocmd = vim.api.nvim_create_autocmd
 local opt = vim.opt
 local g = vim.g
 
+-- Theme
+vim.cmd.colorscheme 'foggy-forest'
+vim.cmd.syntax 'on'
+
 -- conceallevel for latex
 opt.conceallevel = 1
 

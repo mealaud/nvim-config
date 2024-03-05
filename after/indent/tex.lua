@@ -9,14 +9,14 @@
 --     group = compileOnSave,
 --     buffer = 0,
 -- })
-vim.cmd([[
-echomsg "blahooboo"
-]])
+-- vim.cmd([[
+-- echomsg "blahooboo"
+-- ]])
 
 vim.cmd("set indentexpr=")
 
 
-vim.cmd([[
-echomsg "what the actual fuck is even happening right now this is so insanely bad"
-]])
+-- vim.cmd([[
+-- echomsg "what the actual fuck is even happening right now this is so insanely bad"
+-- ]])
 -- vim.cmd.normal(":set indentexpr=<CR>")
