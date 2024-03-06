@@ -7,8 +7,14 @@ local opt = vim.opt
 local g = vim.g
 
 -- Theme
-vim.cmd.colorscheme 'foggy-forest'
-vim.cmd.syntax 'on'
+autocmd("VimEnter", {
+  callback = function()
+    vim.cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
+  end,
+})
+-- vim.cmd.colorscheme 'foggy-forest'
+-- vim.cmd.syntax 'on'
+-- vim.cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
 
 -- conceallevel for latex
 opt.conceallevel = 1
@@ -127,4 +133,3 @@ pcall(require('telescope').load_extension, 'fzf')
 -- switch between buffers (i love buffferline)
 map({'n', 'x'}, '<S-tab>', ':bn<CR>', { silent = true })
 map({'n', 'x'}, '<S-x>', ':bd<CR>', { silent = true })
-

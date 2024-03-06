@@ -1,6 +1,7 @@
-vim.cmd.highlight("clear")
+-- vim.cmd.highlight("clear")
 
 vim.opt.termguicolors = true
+
 vim.g.colors_name = "foggy-forest"
 
 local hi = function(group, opts)
@@ -24,13 +25,18 @@ local colors = {
   yellow3="#efdba4",
 }
 
--- Normal vim stuff
+-- NORMAL VIM STUFF
 hi("Normal", { fg = colors.fg0, bg = colors.bg0 })
 hi("Conceal", { fg = colors.fg0 })
 hi("LineNr", { fg = colors.fg2, bg = colors.bg1 })
 hi("CursorLineNr", { fg = colors.fg1, bg = colors.bg1 })
 hi("Comment", { fg = colors.fg3, italic = true })
 hi("CursorLine", { bg = colors.bg2 })
+hi("NonText", { fg = colors.fg3, bg = colors.bg2 })
+
+
+--- FLOATING POPUPS
+hi("NormalFloat", { fg = colors.fg0, bg = colors.bg0 })
 
 
 --
@@ -46,34 +52,38 @@ hi("lualine_z_normal", { link = "lualine_a_normal" })
 hi("lualine_transitional_lualine_a_normal_to_lualine_c_normal", { bg = colors.bg4 })
 -- Lualine command
 hi("lualine_a_command", { link = "lualine_a_normal" })
-hi("lualine_b_command", { link = "lualine_a_normal" })
-hi("lualine_c_command", { link = "lualine_a_normal" })
-hi("lualine_x_command", { link = "lualine_c_normal" })
-hi("lualine_y_command", { link = "lualine_b_normal" })
-hi("lualine_z_command", { link = "lualine_a_normal" })
+hi("lualine_b_command", { link = "lualine_a_command" })
+hi("lualine_c_command", { link = "lualine_a_command" })
+hi("lualine_x_command", { link = "lualine_c_command" })
+hi("lualine_y_command", { link = "lualine_b_command" })
+hi("lualine_z_command", { link = "lualine_a_command" })
 hi("lualine_transitional_lualine_a_command_to_lualine_c_command", { link = "lualine_transitional_lualine_a_normal_to_lualine_c_normal" })
 -- Lualine insert
 hi("lualine_a_insert", { link = "lualine_a_normal" })
-hi("lualine_b_insert", { link = "lualine_a_normal" })
-hi("lualine_c_insert", { link = "lualine_a_normal" })
-hi("lualine_x_insert", { link = "lualine_c_normal" })
-hi("lualine_y_insert", { link = "lualine_b_normal" })
-hi("lualine_z_insert", { link = "lualine_a_normal" })
+hi("lualine_b_insert", { link = "lualine_a_insert" })
+hi("lualine_c_insert", { link = "lualine_a_insert" })
+hi("lualine_x_insert", { link = "lualine_c_insert" })
+hi("lualine_y_insert", { link = "lualine_b_insert" })
+hi("lualine_z_insert", { link = "lualine_a_insert" })
 hi("lualine_transitional_lualine_a_insert_to_lualine_c_insert", { link = "lualine_transitional_lualine_a_normal_to_lualine_c_normal" })
 -- Lualine visual
 hi("lualine_a_visual", { link = "lualine_a_normal" })
-hi("lualine_b_visual", { link = "lualine_a_normal" })
-hi("lualine_c_visual", { link = "lualine_a_normal" })
-hi("lualine_x_visual", { link = "lualine_c_normal" })
-hi("lualine_y_visual", { link = "lualine_b_normal" })
-hi("lualine_z_visual", { link = "lualine_a_normal" })
+hi("lualine_b_visual", { link = "lualine_a_visual" })
+hi("lualine_c_visual", { link = "lualine_a_visual" })
+hi("lualine_x_visual", { link = "lualine_c_visual" })
+hi("lualine_y_visual", { link = "lualine_b_visual" })
+hi("lualine_z_visual", { link = "lualine_a_visual" })
 hi("lualine_transitional_lualine_a_visual_to_lualine_c_visual", { link = "lualine_transitional_lualine_a_normal_to_lualine_c_normal" })
-        -- theme = {
-        --   normal = {
-        --     a = { bg = '#2f444a', fg = '#c7c7b9', gui = 'bold' },
-        --     b = { bg = '#2f444a', fg = '#c7c7b9', gui = 'bold' },
-        --     c = { bg = '#2f444a', fg = '#c7c7b9', gui = 'bold' },
-        --   }
-        -- },
--- " hi Error guifg=#e6cf57
--- " hi ErrorMsg guifg=#ecd57f
+-- File Diffs/edits
+hi("lualine_y_diff_added_normal", { link = "lualine_a_normal" })
+hi("lualine_y_diff_modified_normal", { link = "lualine_y_diff_added_normal" })
+hi("lualine_y_diff_removed_normal", { link = "lualine_y_diff_added_normal" })
+hi("lualine_y_diff_added_command", { link = "lualine_a_normal" })
+hi("lualine_y_diff_modified_command", { link = "lualine_y_diff_added_command" })
+hi("lualine_y_diff_removed_command", { link = "lualine_y_diff_added_command" })
+hi("lualine_y_diff_added_visual", { link = "lualine_a_normal" })
+hi("lualine_y_diff_modified_visual", { link = "lualine_y_diff_added_visual" })
+hi("lualine_y_diff_removed_visual", { link = "lualine_y_diff_added_visual" })
+hi("lualine_y_diff_added_insert", { link = "lualine_a_normal" })
+hi("lualine_y_diff_modified_insert", { link = "lualine_y_diff_added_insert" })
+hi("lualine_y_diff_removed_insert", { link = "lualine_y_diff_added_insert" })

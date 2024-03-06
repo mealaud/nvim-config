@@ -13,8 +13,10 @@ return {
         --     c = { bg = '#2f444a', fg = '#c7c7b9', gui = 'bold' },
         --   }
         -- },
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        -- component_separators = { left = '', right = ''},
+        -- section_separators = { left = '', right = ''},
+        component_separators = '',
+        section_separators = '',
       },
 
       sections = {
