@@ -31,6 +31,7 @@ let g:yellow3="#efdba4"
 
 " exe "hi Normal guifg=" + g:fg0 + " guibg=" + g:bg0
 hi Normal guifg=#ece6da guibg=#1c1f2e
+hi Conceal guibg=clear
 hi LineNr guifg=#a2a89b guibg=#1f2735
 hi Comment guifg=#6d7c72 gui=italic
 hi Error guifg=#e6cf57

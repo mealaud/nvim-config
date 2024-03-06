@@ -266,6 +266,9 @@ ls.add_snippets("tex", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  s(".e", {
+    t("\\varnothing"),
+  }, { condition = m.in_mathzone }),
   s(".p", {
     t("\\partial"),
   }, { condition = m.in_mathzone }),
