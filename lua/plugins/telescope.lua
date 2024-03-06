@@ -116,7 +116,6 @@ return {
       })
     end, -- end for the config function
   },
-
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
@@ -125,5 +124,14 @@ return {
     cond = function()
       return vim.fn.executable 'make' == 1
     end,
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require("telescope").load_extension "frecency"
+    end,
+  },
+  {
+    'olacin/telescope-cc.nvim',
   },
 }
