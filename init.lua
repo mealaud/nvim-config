@@ -17,7 +17,7 @@ autocmd("VimEnter", {
 -- vim.cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
 
 -- conceallevel for latex
-opt.conceallevel = 1
+opt.conceallevel = 2
 
 -- indentation nonsense
 opt.expandtab = true

@@ -17,5 +17,6 @@ return {
     vim.g.vimtex_compiler_engine = 'lualatex'
     vim.g.vimtex_indent_on_ampersands = 0
     -- vim.g.vimtex_quickfix_enabled = 0
+    vim.g.vimtex_syntax_conceal = { math_bounds = 0}
   end,
 }

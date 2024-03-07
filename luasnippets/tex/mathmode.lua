@@ -37,9 +37,9 @@ GREEK_LETTERS["z"] = "zeta"
 ls.add_snippets("tex", {
   -- display math
   s("dm", {
-      t({"", "$$", "\t" }),
+      t({"", "\\begin{equation}", "\t"}),
       i(0),
-      t({ "", "$$" }),
+      t({"", "\\end{equation}",""}),
   }, { condition = m.in_text }),
   s("mm", {
       t("$ "),
