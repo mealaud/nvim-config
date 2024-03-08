@@ -26,12 +26,12 @@ return {
                     --"markdown_inline",
                     "vim",
                     "javascript",
-                    "latex",
+                    -- "latex",
                     "html",
                 },
                 highlight = {
                     enable = true,
-                    -- disable = { "latex" },
+                    disable = { "markdown", "md" },
                     additional_vim_regex_highlighting = { "latex", },
                 },
                 playground = {

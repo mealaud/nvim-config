@@ -4,16 +4,27 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- test
 -- I'm lazy
+local map = vim.keymap.set
 local opt = vim.opt
 local g = vim.g
+local cmd = vim.cmd
+local fn = vim.fn
 
 -- Theme
 opt.termguicolors = true
+opt.syntax = on
 autocmd("VimEnter", {
   callback = function()
-    vim.cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
+    cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
   end,
 })
+
+-- Finding the highlight group under the cursor
+-- local function get_hl_group()
+--   cmd.echo fn.map(fn.synstack(fn.line('.'), fn.col('.')), 'fn.synIDattr(v:val, "name")')
+-- end
+-- map('n', '<Space>g', get_hl_group())
+
 
 -- Turning on spell check
 opt.spell = true
@@ -56,7 +67,6 @@ opt.relativenumber = true
 opt.scrolloff = 20
 
 -- set up basic keymaps
-local map = vim.keymap.set
 
 -- Access init.lua and plugins.lua
 map('n', '<Space>s', ':edit $MYVIMRC<CR>', { silent = true })

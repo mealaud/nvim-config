@@ -40,6 +40,18 @@ hi("NonText", { fg = colors.fg3, bg = colors.bg2 })
 hi("NormalFloat", { fg = colors.fg0, bg = colors.bg0 })
 
 
+--- MARKDOWN SYNTAX HIGHLIGHTING
+-- hi("markdownItalic", { link = "Normal" })
+-- hi("markdownBold", )
+hi("markdownH1", { fg = colors.yellow0, bold = true })
+hi("markdownH2", { link = "markdownH1" })
+hi("markdownH3", { fg = colors.yellow1, bold = true })
+hi("markdownH4", { link = "markdownH3" })
+hi("markdownH5", { fg = colors.yellow2, bold = true })
+hi("markdownH6", { link = "markdownH5" })
+
+
+
 --
 -- LUALINE CUSTOMIZATION
 --
