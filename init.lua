@@ -8,11 +8,15 @@ local opt = vim.opt
 local g = vim.g
 
 -- Theme
+opt.termguicolors = true
 autocmd("VimEnter", {
   callback = function()
     vim.cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
   end,
 })
+
+-- Turning on spell check
+opt.spell = true
 -- vim.cmd.colorscheme 'foggy-forest'
 -- vim.cmd.syntax 'on'
 -- vim.cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'

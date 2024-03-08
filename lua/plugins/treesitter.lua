@@ -22,8 +22,8 @@ return {
                 },
                 ensure_installed = {
                     "lua",
-                    "markdown",
-                    "markdown_inline",
+                    --"markdown",
+                    --"markdown_inline",
                     "vim",
                     "javascript",
                     "latex",
