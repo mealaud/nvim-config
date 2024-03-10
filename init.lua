@@ -2,7 +2,6 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
--- test
 -- I'm lazy
 local map = vim.keymap.set
 local opt = vim.opt
@@ -16,33 +15,56 @@ opt.syntax = on
 autocmd("VimEnter", {
   callback = function()
     cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
+    -- cmd.colorscheme 'foggy-forest.lua'
   end,
 })
 
 -- Finding the highlight group under the cursor
--- local function get_hl_group()
---   cmd.echo fn.map(fn.synstack(fn.line('.'), fn.col('.')), 'fn.synIDattr(v:val, "name")')
--- end
--- map('n', '<Space>g', get_hl_group())
+map('n', '<Space>o', ':Oil<CR>', { silent = true })
+map('n', '<Space>]', function()
+  for _, i1 in ipairs(fn.synstack(fn.line('.'), fn.col('.'))) do
+    local i2 = fn.synIDtrans(i1)
+    local group = fn.synIDattr(i2, 'name')
+    local fg = fn.synIDattr(i2, 'fg#')
+    local bg = fn.synIDattr(i2, 'bg#')
+    print(group, "/", fg, "/", bg)
+   end
+end, {})
+
+function GetSyntaxRegions()
+    local line = vim.fn.line('.')
+    local col = vim.fn.col('.')
+    local synstack_ids = vim.fn.synstack(line, col)
+    vim.print(line, col, synstack_ids)
+    local regions = vim.tbl_map(function(id)
+        return vim.fn.synIDattr(id, "name")
+    end, synstack_ids)
+    -- return regions
+    return synstack_ids
+end
+
+map('n', '<Space>0', function()
+  print(vim.inspect(GetSyntaxRegions()))
+end, {})
 
 
 -- Turning on spell check
 opt.spell = true
--- vim.cmd.colorscheme 'foggy-forest'
--- vim.cmd.syntax 'on'
--- vim.cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
 
 -- conceallevel for latex
 opt.conceallevel = 2
+autocmd("BufEnter", {
+  callback = function()
+    opt.conceallevel = 2
+  end,
+})
 
 -- indentation nonsense
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.tabstop = 2
-opt.autoindent = false
-vim.g.vimtex_indent_enabled = false
-
--- opt.textwidth = 55
+-- opt.autoindent = false
+-- vim.g.vimtex_indent_enabled = false
 
 -- Set cursor line settings
 opt.wrap = true

@@ -9,7 +9,7 @@
   "nvim-autopairs": { "branch": "master", "commit": "c6139ca0d5ad7af129ea6c89cb4c56093f2c034a" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" },
   "nvim-surround": { "branch": "main", "commit": "d47001f8ddf9646c24f16d2732d4d0255acd2121" },
-  "nvim-web-devicons": { "branch": "master", "commit": "4adea17610d140a99c313e3f79a9dc01825d59ae" },
+  "nvim-web-devicons": { "branch": "master", "commit": "75df79feb02d5e0ec114e447453775d4d291ea03" },
   "oil.nvim": { "branch": "master", "commit": "18dfd2458dc741fea683357a17aaa95870b25a3c" },
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "telescope-cc.nvim": { "branch": "main", "commit": "5bd324fc96e617221ccfbc7441e1e16f12fabb26" },

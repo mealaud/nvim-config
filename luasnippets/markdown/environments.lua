@@ -27,7 +27,7 @@ ENVS["x"] = "x"
 
 ls.add_snippets("markdown", {
   -- math environments
-  s({ trig = ";([tlpcdreubx])", regTrig = true, wordTrig = false }, {
+  s({ trig = ";([tlpcdreux])", regTrig = true, wordTrig = false }, {
     t("{{% MathEnv \""),
     f(function(_, snip)
       if ENVS[snip.captures[1]] then

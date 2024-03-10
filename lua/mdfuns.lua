@@ -1,15 +1,23 @@
 local m = {}
 
+function GetSyntaxRegions()
+    local line = vim.fn.line('.')
+    local col = vim.fn.col('.')
+    local synstack_ids = vim.fn.synstack(line, col)
+    local regions = vim.tbl_map(function(id)
+        return vim.fn.synIDattr(id, "name")
+    end, synstack_ids)
+    return regions
+end
+
 m.in_mathzone = function()
-    local current_node = vim.treesitter.get_node({ ignore_injections = false })
-    while current_node do
-        vim.print(current_node:type())
-        if current_node:type() == "source_file" then
-            return true
-        end
-        current_node = current_node:parent()
+  local regions = GetSyntaxRegions()
+  for _, r in ipairs(regions) do
+    if r == "mkdMath" then
+      return true
     end
-    return false
+  end
+  return false
 end
 
 m.in_text = function()
