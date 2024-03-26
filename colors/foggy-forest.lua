@@ -25,6 +25,10 @@ local colors = {
   yellow3="#efdba4",
 }
 
+-- Bufferline
+hi("BufferLineBufferSelected", { fg = colors.bg0, bg = colors.yellow3 })
+-- hi("BufferLineDevIconDefaultSelected", { fg = colors.bg0, bg = colors.yellow3 })
+
 -- NORMAL VIM STUFF
 hi("Normal", { fg = colors.fg0, bg = colors.bg0 })
 hi("Conceal", { fg = colors.fg0 })

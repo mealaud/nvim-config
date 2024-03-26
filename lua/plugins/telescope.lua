@@ -80,12 +80,7 @@ return {
 
       vim.keymap.set('n', '<leader>h', require('telescope.builtin').help_tags, { silent = true })
 
-      -- vim.keymap.set('n', '<leader>fi', function()
-      --   require('telescope.builtin').find_files({
-      --     prompt_title = 'i3',
-      --     cwd = '~/.config/i3/'
-      --   })
-      -- end, { silent = true })
+      vim.keymap.set('n', '<leader>b', require('telescope.builtin').buffers, { silent = true })
 
       vim.keymap.set('n', '<leader>f.', function()
         require('telescope.builtin').find_files({

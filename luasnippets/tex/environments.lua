@@ -36,7 +36,7 @@ ls.add_snippets("tex", {
       t(),
       { t("{\\label{"), i(1), t("}}") }
     }),
-    t({"","\t"}),
+    t({""}),
     i(0),
     t({"","\\end{result}",""}),
   }, { condition = m.in_text and m.begins_line }),
@@ -54,7 +54,7 @@ ls.add_snippets("tex", {
       t(),
       { t("{\\label{"), i(1), t("}}") }
     }),
-    t({"", "\t"}),
+    t(""),
     i(2),
     t({"","\\end{"}),
     f(function(_, snip)
@@ -73,7 +73,7 @@ ls.add_snippets("tex", {
       t("[label=(\\roman*)]"),
       t("[label=(\\arabic*)]"),
     }),
-    t({ "", "\t\\item " }),
+    t({ "", "\\item " }),
     i(0),
     t({ "", "\\end{enumerate}" }),
   }, { condition = m.in_text and m.begins_line }),
@@ -94,7 +94,7 @@ ls.add_snippets("tex", {
   s("pnc", {
     t("\\begin{probnc}{"),
     i(1),
-    t({"}", "\t"}),
+    t("}"),
     i(0),
     t({"", "\\end{probnc}"}),
   }, { condition = m.in_text and m.begins_line })

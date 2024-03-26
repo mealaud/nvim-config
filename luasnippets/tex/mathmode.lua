@@ -18,18 +18,19 @@ GREEK_LETTERS["b"] = "beta"
 GREEK_LETTERS["c"] = "chi"
 GREEK_LETTERS["d"] = "delta"
 GREEK_LETTERS["e"] = "varepsilon"
-GREEK_LETTERS["v"] = "varphi"
 GREEK_LETTERS["f"] = "phi"
-GREEK_LETTERS["p"] = "psi"
 GREEK_LETTERS["g"] = "gamma"
 GREEK_LETTERS["i"] = "iota"
+GREEK_LETTERS["k"] = "kappa"
 GREEK_LETTERS["l"] = "lambda"
 GREEK_LETTERS["m"] = "mu"
 GREEK_LETTERS["n"] = "nabla"
+GREEK_LETTERS["p"] = "psi"
 GREEK_LETTERS["r"] = "rho"
 GREEK_LETTERS["s"] = "sigma"
 GREEK_LETTERS["t"] = "theta"
 GREEK_LETTERS["u"] = "vartheta"
+GREEK_LETTERS["v"] = "varphi"
 GREEK_LETTERS["w"] = "omega"
 GREEK_LETTERS["x"] = "xi"
 GREEK_LETTERS["z"] = "zeta"
@@ -208,6 +209,7 @@ ls.add_snippets("tex", {
     i(0),
   }, { condition = m.in_mathzone }),
   s("dx", {t("\\, \\mathrm d "), i(0)}, { condition = m.in_mathzone }),
+  s("dr", {t("\\mathrm d "), i(0)}, { condition = m.in_mathzone }),
   s( { trig = "([^\\])sum", regTrig = true, wordTrig = false}, {
     t("\\sum_{"),
     i(1),

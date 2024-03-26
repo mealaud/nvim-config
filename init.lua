@@ -9,6 +9,10 @@ local g = vim.g
 local cmd = vim.cmd
 local fn = vim.fn
 
+-- Abbreviations for my typos lol
+cmd("iabb teh the")
+cmd("iabb taht that")
+
 -- Theme
 opt.termguicolors = true
 opt.syntax = on
@@ -42,6 +46,7 @@ function GetSyntaxRegions()
     -- return regions
     return synstack_ids
 end
+
 
 map('n', '<Space>0', function()
   print(vim.inspect(GetSyntaxRegions()))
