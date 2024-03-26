@@ -11,35 +11,35 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 local m = require("mdfuns")
 
--- Mel function
 local GREEK_LETTERS = {}
 GREEK_LETTERS["a"] = "alpha"
 GREEK_LETTERS["b"] = "beta"
 GREEK_LETTERS["c"] = "chi"
 GREEK_LETTERS["d"] = "delta"
 GREEK_LETTERS["e"] = "varepsilon"
-GREEK_LETTERS["v"] = "varphi"
 GREEK_LETTERS["f"] = "phi"
-GREEK_LETTERS["p"] = "psi"
 GREEK_LETTERS["g"] = "gamma"
 GREEK_LETTERS["i"] = "iota"
+GREEK_LETTERS["k"] = "kappa"
 GREEK_LETTERS["l"] = "lambda"
 GREEK_LETTERS["m"] = "mu"
-GREEK_LETTERS["n"] = "nu"
+GREEK_LETTERS["n"] = "nabla"
+GREEK_LETTERS["p"] = "psi"
 GREEK_LETTERS["r"] = "rho"
 GREEK_LETTERS["s"] = "sigma"
 GREEK_LETTERS["t"] = "theta"
 GREEK_LETTERS["u"] = "vartheta"
+GREEK_LETTERS["v"] = "varphi"
 GREEK_LETTERS["w"] = "omega"
 GREEK_LETTERS["x"] = "xi"
 GREEK_LETTERS["z"] = "zeta"
 
-ls.add_snippets("markdown", {
+ls.add_snippets("tex", {
   -- display math
   s("dm", {
-      t({"", "$$", "\t" }),
+      t({"", "\\begin{equation}", "\t"}),
       i(0),
-      t({ "", "$$" }),
+      t({"", "\\end{equation}",""}),
   }, { condition = m.in_text }),
   s("mm", {
       t("$ "),
@@ -86,18 +86,20 @@ ls.add_snippets("markdown", {
   }, { condition = m.in_mathzone }),
   -- LaTeX: Less than or equal to
   s({ trig = "<=", wordTrig = false }, t("\\leq"), { condition = m.in_mathzone }),
+  -- LaTeX: lesssim
+  s({ trig = "<~", wordTrig = false }, t("\\lesssim"), { condition = m.in_mathzone }),
   -- LaTeX: Greater than or equal to
   s({ trig = ">=", wordTrig = false }, t("\\geq"), { condition = m.in_mathzone }),
-  -- LaTeX: Composition 
-  s({ trig = "oo", wordTrig = false }, t("\\circ"), { condition = m.in_mathzone }),
+  -- LaTeX: gtrsim
+  s({ trig = ">~", wordTrig = false }, t("\\lesssim"), { condition = m.in_mathzone }),
   -- LaTeX: Times
-  s({ trig = "xx", wordTrig = false }, t("\\times"), { condition = m.in_mathzone }),
+  s({ trig = "xx", wordTrig = false }, t("\\times "), { condition = m.in_mathzone }),
   -- LaTeX: Otimes
-  s({ trig = "ox", wordTrig = false }, t("\\otimes"), { condition = m.in_mathzone }),
+  s({ trig = "ox", wordTrig = false }, t("\\otimes "), { condition = m.in_mathzone }),
   -- LaTeX: Oplus
-  s({ trig = "o+", wordTrig = false }, t("\\oplus"), { condition = m.in_mathzone }),
+  s({ trig = "o+", wordTrig = false }, t("\\oplus "), { condition = m.in_mathzone }),
   -- LaTeX: Center dot
-  s({ trig = "**", wordTrig = false }, t("\\cdot"), { condition = m.in_mathzone }),
+  s({ trig = "**", wordTrig = false }, t("\\cdot "), { condition = m.in_mathzone }),
   -- inverse/exp -1
   s({ trig = "\\inv", wordTrig = false }, t("^{-1}"), { condition = m.in_mathzone }),
   -- Exterior differential
@@ -110,6 +112,8 @@ ls.add_snippets("markdown", {
   s("-.", t("\\downarrow"), { condition = m.in_mathzone }),
   -- Overline
   s("--", {t("\\overline{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
+  -- Widehat
+  s("@@", {t("\\widehat{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Widetilde
   s("~~", {t("\\widetilde{"), i(1), t("}"), i(0)}, { condition = m.in_mathzone }),
   -- Colon
@@ -152,40 +156,34 @@ ls.add_snippets("markdown", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
-  s({ trig = "<>", wordTrig = false }, {
-    t("\\left \\langle "),
+  s({ trig = "ba", wordTrig = false }, {
+    t("\\left | "),
     i(1),
-    t("\\right \\rangle"),
+    t(" \\right | "),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bn", wordTrig = false }, {
     t("\\left \\lVert "),
     i(1),
-    t(" \\right \\rVert"),
-    i(0),
-  }, { condition = m.in_mathzone }),
-  s({ trig = "ba", wordTrig = false }, {
-    t("\\left | "),
-    i(1),
-    t(" \\right |"),
+    t(" \\right \\rVert "),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bb", wordTrig = false }, {
     t("\\left [ "),
     i(1),
-    t(" \\right ]"),
+    t(" \\right ] "),
     i(0),
   }, { condition = m.in_mathzone }),
   s({ trig = "bs", wordTrig = false }, {
-    t("\\left \\\\{ "),
+    t("\\left \\{ "),
     i(1),
-    t(" \\right \\\\}"),
+    t(" \\right \\} "),
     i(0),
   }, { condition = m.in_mathzone }), 
   s({ trig = "bp", wordTrig = false }, {
     t("\\left ( "),
     i(1),
-    t(" \\right )"),
+    t(" \\right ) "),
     i(0),
   }, { condition = m.in_mathzone }),
   s( { trig = "[\\](%u)", regTrig = true, wordTrig = false }, {
@@ -210,6 +208,7 @@ ls.add_snippets("markdown", {
     i(0),
   }, { condition = m.in_mathzone }),
   s("dx", {t("\\, \\mathrm d "), i(0)}, { condition = m.in_mathzone }),
+  s("dr", {t("\\mathrm d "), i(0)}, { condition = m.in_mathzone }),
   s( { trig = "([^\\])sum", regTrig = true, wordTrig = false}, {
     t("\\sum_{"),
     i(1),
@@ -219,7 +218,7 @@ ls.add_snippets("markdown", {
     i(0),
   }, { condition = m.in_mathzone }),
   s( { trig = "([^\\])bup", regTrig = true, wordTrig = false}, {
-    t("\\bigcup{"),
+    t("\\bigcup_{"),
     i(1),
     t("}^{"),
     i(2),
@@ -227,17 +226,11 @@ ls.add_snippets("markdown", {
     i(0),
   }, { condition = m.in_mathzone }),
   s( { trig = "([^\\])bin", regTrig = true, wordTrig = false}, {
-    t("\\bigcap{"),
+    t("\\bigcap_{"),
     i(1),
     t("}^{"),
     i(2),
     t("}"),
-    i(0),
-  }, { condition = m.in_mathzone }),
-  s("><", {
-    t("\\left \\langle "),
-    i(1),
-    t("\\right \\rangle"),
     i(0),
   }, { condition = m.in_mathzone }),
   s("idx", {
@@ -254,6 +247,12 @@ ls.add_snippets("markdown", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  s("<>", {
+    t("\\left \\langle "),
+    i(1),
+    t("\\right \\rangle"),
+    i(0),
+  }, { condition = m.in_mathzone }),
   s("ipx", {
     t("\\partial "),
     i(1),
@@ -267,5 +266,11 @@ ls.add_snippets("markdown", {
     i(2),
     t("}"),
     i(0),
+  }, { condition = m.in_mathzone }),
+  s(".e", {
+    t("\\varnothing"),
+  }, { condition = m.in_mathzone }),
+  s(".p", {
+    t("\\partial"),
   }, { condition = m.in_mathzone }),
 }, { type = "autosnippets" })
