@@ -24,7 +24,6 @@ autocmd("VimEnter", {
 })
 
 -- Finding the highlight group under the cursor
-map('n', '<Space>o', ':Oil<CR>', { silent = true })
 map('n', '<Space>]', function()
   for _, i1 in ipairs(fn.synstack(fn.line('.'), fn.col('.'))) do
     local i2 = fn.synIDtrans(i1)

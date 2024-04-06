@@ -7,7 +7,7 @@ return {
        -- Environments
       vim.env.CONFIG = '/home/mel/.config/nvim/'
       vim.env.MATH = '/home/mel/math/'
-      vim.env.LATEX = '/home/mel/tex/'
+      vim.env.LATEX = '/home/mel/math/tex/'
       vim.env.WEBSITE = '/home/mel/mealaud.github.io'
 
       -- Telescope keymaps

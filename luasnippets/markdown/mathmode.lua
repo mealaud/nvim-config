@@ -34,12 +34,12 @@ GREEK_LETTERS["w"] = "omega"
 GREEK_LETTERS["x"] = "xi"
 GREEK_LETTERS["z"] = "zeta"
 
-ls.add_snippets("tex", {
+ls.add_snippets("markdown", {
   -- display math
   s("dm", {
-      t({"", "\\begin{equation}", "\t"}),
+      t({"", "$$\\begin{equation}", "\t"}),
       i(0),
-      t({"", "\\end{equation}",""}),
+      t({"", "\\end{equation}$$",""}),
   }, { condition = m.in_text }),
   s("mm", {
       t("$ "),
@@ -106,6 +106,8 @@ ls.add_snippets("tex", {
   s("xd", t("\\mathbf{\\mathrm{d}}"), { condition = m.in_mathzone }),
   -- Normal arrow
   -- s("->", t("\\to"), { condition = m.in_mathzone }),
+  -- Double ended arrow
+  s("<->", t("\\longleftrightarrow"), { condition = m.in_mathzone }),
   -- Up arrow
   s("-^", t("\\uparrow"), { condition = m.in_mathzone }),
   -- Down arrow
@@ -156,30 +158,35 @@ ls.add_snippets("tex", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  -- absolute value
   s({ trig = "ba", wordTrig = false }, {
     t("\\left | "),
     i(1),
     t(" \\right | "),
     i(0),
   }, { condition = m.in_mathzone }),
+   -- norm 
   s({ trig = "bn", wordTrig = false }, {
     t("\\left \\lVert "),
     i(1),
     t(" \\right \\rVert "),
     i(0),
   }, { condition = m.in_mathzone }),
+  -- brackets 
   s({ trig = "bb", wordTrig = false }, {
     t("\\left [ "),
     i(1),
     t(" \\right ] "),
     i(0),
   }, { condition = m.in_mathzone }),
+  -- set
   s({ trig = "bs", wordTrig = false }, {
     t("\\left \\{ "),
     i(1),
     t(" \\right \\} "),
     i(0),
   }, { condition = m.in_mathzone }), 
+  -- parentheses
   s({ trig = "bp", wordTrig = false }, {
     t("\\left ( "),
     i(1),
@@ -217,6 +224,7 @@ ls.add_snippets("tex", {
     t("}"),
     i(0),
   }, { condition = m.in_mathzone }),
+  s("'", t("\\prime"), { condition = m.in_mathzone }),
   s( { trig = "([^\\])bup", regTrig = true, wordTrig = false}, {
     t("\\bigcup_{"),
     i(1),

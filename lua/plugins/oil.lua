@@ -6,16 +6,5 @@ return {
     }
   },
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  -- keys = {
-  --   {
-  --     "<C-o>", 
-  --     function()
-  --       require("oil").toggle_float()
-  --     end,
-  --   },
-    -- {
-    --   "<C-O>",
-    --   function()
-    -- }
-  -- },
+  vim.keymap.set('n', '<Space>o', ':Oil<CR>', { silent = true })
 }
