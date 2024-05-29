@@ -6,7 +6,8 @@ return {
     config = function()
        -- Environments
       vim.env.CONFIG = '/home/mel/.config/nvim/'
-      vim.env.MATH = '/home/mel/math/'
+      vim.env.MATHC = '/home/mel/math/'
+      vim.env.MATHO = '/home/mel/math/old/'
       vim.env.LATEX = '/home/mel/math/tex/'
       vim.env.WEBSITE = '/home/mel/mealaud.github.io'
 
@@ -46,10 +47,36 @@ return {
         })
       end, { silent = true })
 
-      vim.keymap.set('n', '<leader>mt', function()
+      vim.keymap.set('n', '<leader>mc', function()
         require('telescope.builtin').find_files({
-          prompt_title = 'Math TEXs',
-          cwd = vim.env.MATH,
+          prompt_title = 'Current Math TEXs',
+          cwd = vim.env.MATHC,
+          file_ignore_patterns = {
+             -- Tex temporary files
+             "%.out",
+             "%.aux",
+             "%.pdf",
+             "%.bbl",
+             "%.bcf",
+             "%.blg",
+             "%.fdb_latexmk",
+             "%.fls",
+             "%.log",
+             "%.pdf_tex",
+             "%.synctex.gz",
+             "%.ttf",
+             "%.xdv",
+             "%.toc",
+             "old/.*",
+             "tex/.*",
+          }
+        })
+      end, { silent = true })
+
+      vim.keymap.set('n', '<leader>mo', function()
+        require('telescope.builtin').find_files({
+          prompt_title = 'Old Math TEXs',
+          cwd = vim.env.MATHO,
           file_ignore_patterns = {
              -- Tex temporary files
              "%.out",
@@ -74,7 +101,7 @@ return {
         require('telescope.builtin').find_files({
           prompt_title = 'LaTeX',
           cwd = vim.env.LATEX,
-          search_file = "*.tex"
+          search_file = "*.tex",
         })
       end, { silent = true })
 
