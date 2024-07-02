@@ -2,23 +2,23 @@
 
 vim.opt.termguicolors = true
 
-vim.g.colors_name = "misty-morning"
+vim.g.colors_name = "foggy-forest"
 
 local hi = function(group, opts)
   vim.api.nvim_set_hl(0, group, opts)
 end
 
 local colors = {
-  bg0="#e1f6fb",
-  bg1="#b4e9f5",
-  bg2="#9ee2f2",
-  bg3="#71d5ec",
-  bg4="#65bfd4",
-  fg0="#1c1f2e",
-  fg1="#1f2735",
-  fg2="#222e3b",
-  fg3="#2a3d45",
-  fg4="#2f444a",
+  bg0="#a1d3f4",
+  bg1="#1f2735",
+  bg2="#222e3b",
+  bg3="#2a3d45",
+  bg4="#2f444a",
+  fg0="#ece6da",
+  fg1="#c7c7b9",
+  fg2="#a2a89b",
+  fg3="#6d7c72",
+  fg4="#4e615b",
   yellow0="#ddca22",
   yellow1="#e6cf57",
   yellow2="#ecd57f",

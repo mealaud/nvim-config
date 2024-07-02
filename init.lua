@@ -2,6 +2,8 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+require("autocommands")
+
 -- I'm lazy
 local map = vim.keymap.set
 local opt = vim.opt
@@ -99,8 +101,9 @@ map('n', '<Space>s', ':edit $MYVIMRC<CR>', { silent = true })
 -- Go to beginning and end of line
 map('n', 'H', '^', {})
 map('n', 'L', '$', {})
--- Update/save a file (normal and insert modes different bc think about it)
--- function to update website map if in teh correct directory!
+-- Saving files with <C-s>
+map("n", "<C-s>", vim.cmd.update, { silent = true })
+map({ "i", "x" }, "<C-s>", "<Esc><Cmd>up!<CR>", { silent = true })
 
 -- Buffer navigatin'
 map('n', '<C-h>', '<C-w>h', { silent = true })

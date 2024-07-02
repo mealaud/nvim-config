@@ -37,7 +37,7 @@ hi("CursorLineNr", { fg = colors.fg1, bg = colors.bg1 })
 hi("Visual", { fg = colors.bg0, bg = colors.yellow3 })
 hi("Comment", { fg = colors.fg3, italic = true })
 hi("CursorLine", { bg = colors.bg2 })
-hi("NonText", { fg = colors.fg3, bg = colors.bg2 })
+hi("NonText", { fg = colors.fg3, bg = colors.bg0 })
 
 
 --- FLOATING POPUPS

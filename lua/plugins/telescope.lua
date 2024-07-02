@@ -5,11 +5,13 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
        -- Environments
-      vim.env.CONFIG = '/home/mel/.config/nvim/'
+      vim.env.DOTS = '/home/mel/.config/'
+      vim.env.NVIM = '/home/mel/.config/nvim/'
       vim.env.MATHC = '/home/mel/math/'
       vim.env.MATHO = '/home/mel/math/old/'
       vim.env.LATEX = '/home/mel/math/tex/'
-      vim.env.WEBSITE = '/home/mel/mealaud.github.io'
+      vim.env.WEBSITE = '/home/mel/mealaud.github.io/'
+      vim.env.PDFS = '/home/mel/'
 
       -- Telescope keymaps
       vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep)
@@ -40,10 +42,17 @@ return {
         })
       end, { silent = true })
 
+      vim.keymap.set('n', '<leader>n', function()
+        require('telescope.builtin').find_files({
+          prompt_title = 'NVIM',
+          cwd = vim.env.NVIM
+        })
+      end, { silent = true })
+
       vim.keymap.set('n', '<leader>c', function()
         require('telescope.builtin').find_files({
-          prompt_title = 'Config',
-          cwd = vim.env.CONFIG
+          prompt_title = 'NVIM Config',
+          cwd = vim.env.NVIM
         })
       end, { silent = true })
 
@@ -55,7 +64,7 @@ return {
              -- Tex temporary files
              "%.out",
              "%.aux",
-             "%.pdf",
+             -- "%.pdf",
              "%.bbl",
              "%.bcf",
              "%.blg",
@@ -81,7 +90,7 @@ return {
              -- Tex temporary files
              "%.out",
              "%.aux",
-             "%.pdf",
+             -- "%.pdf",
              "%.bbl",
              "%.bcf",
              "%.blg",
@@ -97,6 +106,14 @@ return {
         })
       end, { silent = true })
 
+      vim.keymap.set('n', '<leader>d', function()
+        require('telescope.builtin').find_files({
+          prompt_title = 'PDFs',
+          cwd = vim.env.PDFS,
+          search_file = "*.pdf",
+        })
+      end, { silent = true })
+
       vim.keymap.set('n', '<leader>t', function()
         require('telescope.builtin').find_files({
           prompt_title = 'LaTeX',
@@ -109,15 +126,26 @@ return {
 
       vim.keymap.set('n', '<leader>b', require('telescope.builtin').buffers, { silent = true })
 
-      vim.keymap.set('n', '<leader>f.', function()
+      vim.keymap.set('n', '<leader>.', function()
         require('telescope.builtin').find_files({
           prompt_title = 'Dot Files',
-          cwd = '~/.config/',
-          file_ignore_patterns = {
-            "discord",
-            "nvim",
-            "spotify",
-          }
+          cwd = vim.env.DOTS,
+          hidden = true,
+          search_dirs = {
+            "newhome",
+            "zathura",
+            "sxhkd",
+            "kitty",
+            "polybar",
+            "bspwm",
+            "dunst",
+            ".scripts",
+          },
+          -- search_file = {
+          --   ".fehbg",
+          --   ".xinitrc",
+          --   ".zshrc",
+          -- },
         })
       end, { silent = true })
 
