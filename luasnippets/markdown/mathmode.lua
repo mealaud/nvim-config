@@ -144,6 +144,17 @@ ls.add_snippets("markdown", {
   s("mcal", fmt([[\mathcal{{{}}}]], i(1)), { condition = m.in_mathzone }),
   -- LaTeX: Math script
   s("mscr", fmt([[\mathscr{{{}}}]], i(1)), { condition = m.in_mathzone }),
+  -- Replacing single quotes with primes
+  s({trig = "'", wordTrig = false }, {
+    t("^{"),
+    c(1, {
+      t("\\prime"),
+      t("\\prime\\prime"),
+      t("\\prime\\prime\\prime"),
+    }),
+    t("}"),
+    i(0),
+  }, { condition = m.in_mathzone }),
   -- LaTeX: Math text
   s({ trig = "tt", wordTrig = false }, fmt([[\text{{{}}}]], i(1)), { condition = m.in_mathzone }),
    -- sqrt snippet
@@ -181,9 +192,9 @@ ls.add_snippets("markdown", {
   }, { condition = m.in_mathzone }),
   -- set
   s({ trig = "bs", wordTrig = false }, {
-    t("\\left \\{ "),
+    t("\\left \\\\{ "),
     i(1),
-    t(" \\right \\} "),
+    t(" \\right \\\\} "),
     i(0),
   }, { condition = m.in_mathzone }), 
   -- parentheses

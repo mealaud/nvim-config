@@ -70,8 +70,8 @@ ls.add_snippets("tex", {
     c(1, {
       t(),
       t("[label=(\\alph*)]"),
-      t("[label=(\\roman*)]"),
       t("[label=(\\arabic*)]"),
+      t("[label=(\\roman*)]"),
     }),
     t({ "", "\\item " }),
     i(0),

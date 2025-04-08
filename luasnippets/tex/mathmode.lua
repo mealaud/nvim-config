@@ -274,4 +274,7 @@ ls.add_snippets("tex", {
   s(".p", {
     t("\\partial"),
   }, { condition = m.in_mathzone }),
+  s("\\weak", {
+    t("\\rightharpoonup"),
+  }, { condition = m.in_mathzone }),
 }, { type = "autosnippets" })

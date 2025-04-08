@@ -15,13 +15,18 @@ local fn = vim.fn
 cmd("iabb teh the")
 cmd("iabb taht that")
 
+-- Fixed syntax highlighting (let it take longer to do it)
+-- opt.redrawtime=10000
+-- opt.synmaxcol=0
+g.vimsyn_maxlines = 100
+g.vimsyn_minlines = 50
+
 -- Theme
 opt.termguicolors = true
 opt.syntax = on
 autocmd("VimEnter", {
   callback = function()
-    cmd.source '/home/mel/.config/nvim/colors/foggy-forest.lua'
-    -- cmd.colorscheme 'foggy-forest.lua'
+    cmd.source '/home/mel/.config/nvim/colors/perfect-day.lua'
   end,
 })
 
@@ -98,6 +103,8 @@ opt.scrolloff = 20
 
 -- Access init.lua and plugins.lua
 map('n', '<Space>s', ':edit $MYVIMRC<CR>', { silent = true })
+--- Access todolist
+map('n', '<Space>q', ':edit /home/mel/math/todo.md<CR>', { silent = true })
 -- Go to beginning and end of line
 map('n', 'H', '^', {})
 map('n', 'L', '$', {})

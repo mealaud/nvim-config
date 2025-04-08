@@ -11,7 +11,7 @@ return {
       vim.env.MATHO = '/home/mel/math/old/'
       vim.env.LATEX = '/home/mel/math/tex/'
       vim.env.WEBSITE = '/home/mel/mealaud.github.io/'
-      vim.env.PDFS = '/home/mel/'
+      -- vim.env.DOCS = '/home/mel/'
 
       -- Telescope keymaps
       vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep)
@@ -64,7 +64,8 @@ return {
              -- Tex temporary files
              "%.out",
              "%.aux",
-             -- "%.pdf",
+             "%.pdf",
+             "%.djvu",
              "%.bbl",
              "%.bcf",
              "%.blg",
@@ -90,7 +91,8 @@ return {
              -- Tex temporary files
              "%.out",
              "%.aux",
-             -- "%.pdf",
+             "%.pdf",
+             "%.djvu",
              "%.bbl",
              "%.bcf",
              "%.blg",
@@ -106,13 +108,13 @@ return {
         })
       end, { silent = true })
 
-      vim.keymap.set('n', '<leader>d', function()
-        require('telescope.builtin').find_files({
-          prompt_title = 'PDFs',
-          cwd = vim.env.PDFS,
-          search_file = "*.pdf",
-        })
-      end, { silent = true })
+      -- vim.keymap.set('n', '<leader>d', function()
+      --   require('telescope.builtin').find_files({
+      --     prompt_title = 'DOCs',
+      --     cwd = vim.env.DOCs,
+      --     search_file = "*.pdf",
+      --   })
+      -- end, { silent = true })
 
       vim.keymap.set('n', '<leader>t', function()
         require('telescope.builtin').find_files({
